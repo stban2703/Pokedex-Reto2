@@ -1,4 +1,4 @@
-package com.example.pokedex
+package com.example.pokedex.util
 
 import java.net.URL
 import javax.net.ssl.*

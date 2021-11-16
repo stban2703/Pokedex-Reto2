@@ -75,24 +75,19 @@ class PokedexActivity : AppCompatActivity() {
     private fun getUserPokemon() {
         pokedexCollection.document(user.id).collection("pokedex")
             .orderBy("date").addSnapshotListener { value, error ->
-                if (value?.documents?.size == 0) {
-                    Toast
-                        .makeText(this, "No tienes ningún Pokemon por ahora", Toast.LENGTH_SHORT)
-                        .show()
-                } else {
-                    for (change in value!!.documentChanges) {
-                        when (change.type) {
-                            DocumentChange.Type.ADDED -> {
-                                val pokemon = change.document.toObject(Pokemon::class.java)
-                                adapter?.addPokemon(pokemon)
-                                layoutManager.scrollToPosition(0)
-                            }
+                for (change in value!!.documentChanges) {
+                    Log.e(">>>", value.documents.size.toString())
+                    when (change.type) {
+                        DocumentChange.Type.ADDED -> {
+                            val pokemon = change.document.toObject(Pokemon::class.java)
+                            adapter?.addPokemon(pokemon)
+                            layoutManager.scrollToPosition(0)
+                        }
 
-                            DocumentChange.Type.REMOVED -> {
-                                val deletedPokemon = change.document.toObject(Pokemon::class.java)
-                                Log.e(">>>", deletedPokemon.name)
-                                adapter?.removePokemon(deletedPokemon)
-                            }
+                        DocumentChange.Type.REMOVED -> {
+                            val deletedPokemon = change.document.toObject(Pokemon::class.java)
+                            //Log.e(">>>", deletedPokemon.name)
+                            adapter?.removePokemon(deletedPokemon)
                         }
                     }
                 }
@@ -117,7 +112,6 @@ class PokedexActivity : AppCompatActivity() {
     }
 
     private fun catchPokemon(pokemonName: String) {
-        //Log.e("Pokemon>>>", "Ok")
         lifecycleScope.launch(Dispatchers.IO) {
             try {
                 val json =

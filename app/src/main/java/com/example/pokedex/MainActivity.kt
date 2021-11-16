@@ -10,7 +10,7 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    val userCollection = Firebase.firestore.collection("users")
+    private val userCollection = Firebase.firestore.collection("users")
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

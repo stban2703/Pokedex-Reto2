@@ -1,7 +1,6 @@
 package com.example.pokedex
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -10,7 +9,6 @@ import com.example.pokedex.databinding.ActivityPokedexBinding
 import com.example.pokedex.pokedex.Response
 import com.example.pokedex.util.HTTPSWebUtilDomi
 import com.google.firebase.firestore.DocumentChange
-import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.gson.Gson
@@ -18,6 +16,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.*
+import android.graphics.BitmapFactory
+
+import android.graphics.Bitmap
+import java.io.IOException
+import java.io.InputStream
+import java.net.HttpURLConnection
+import java.net.URL
+
 
 class PokedexActivity : AppCompatActivity() {
 
@@ -65,6 +71,7 @@ class PokedexActivity : AppCompatActivity() {
                             DocumentChange.Type.ADDED -> {
                                 val pokemon = change.document.toObject(Pokemon::class.java)
                                 adapter?.addPokemon(pokemon)
+                                layoutManager.scrollToPosition(0)
                             }
                         }
                     }
@@ -102,7 +109,6 @@ class PokedexActivity : AppCompatActivity() {
                 }
 
             } catch (e: Exception) {
-                Log.e(">>>", e.toString())
                 // Si no encuentra un pokemon o el nombre es incorrecto
                 withContext(Dispatchers.Main) {
                     Toast.makeText(applicationContext, "Pokemon no encontrado", Toast.LENGTH_SHORT)

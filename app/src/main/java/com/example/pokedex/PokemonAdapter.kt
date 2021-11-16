@@ -1,8 +1,14 @@
 package com.example.pokedex
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.pokedex.util.BitmapFromUrl
+import java.io.File
+import java.io.FileOutputStream
+import java.net.URL
 
 class PokemonAdapter : RecyclerView.Adapter<PokemonView>() {
 
@@ -27,10 +33,21 @@ class PokemonAdapter : RecyclerView.Adapter<PokemonView>() {
     override fun onBindViewHolder(holder: PokemonView, position: Int) {
         val pokemon = pokemonList[position]
         holder.pokemon = pokemon
-        holder.rowNameTV.text = pokemon.name
+        holder.rowNameTV.text = pokemon.name.replaceFirstChar {
+            it.uppercase()
+        }
+        Glide.with(holder.itemView.context).load(pokemon.sprite).centerCrop().into(holder.rowImage)
     }
 
     override fun getItemCount(): Int {
         return pokemonList.size
+    }
+
+    fun download(link: String, path: String) {
+        URL(link).openStream().use { input ->
+            FileOutputStream(File(path)).use { output ->
+                input.copyTo(output)
+            }
+        }
     }
 }

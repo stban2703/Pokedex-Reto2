@@ -24,20 +24,24 @@ class MainActivity : AppCompatActivity() {
         binding.loginBtn.setOnClickListener {
             val username =
                 binding.usernameET.text.toString().lowercase().filter { !it.isWhitespace() }
-            val user = User(UUID.randomUUID().toString(), username)
+            val user = User("", username)
             val query = userCollection.whereEqualTo("username", user.username)
 
             if (username != "") {
                 query.get().addOnCompleteListener {
                     if (it.result?.size() == 0) {
+
                         // Crea el usuario si no existe
-                        userCollection.document(user.id).set(user)
+                        val newUserRef = userCollection.document()
+                        user.id = newUserRef.id
+                        newUserRef.set(user)
                         val intent = Intent(this, PokedexActivity::class.java).apply {
                             putExtra("user", user)
                         }
                         startActivity(intent)
 
                     } else {
+
                         // Si existe, trae la informacion de ese usuario
                         lateinit var existingUser: User
                         for (document in it.result!!) {

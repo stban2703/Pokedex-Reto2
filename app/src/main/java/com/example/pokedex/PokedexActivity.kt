@@ -20,6 +20,7 @@ import java.util.*
 import android.graphics.BitmapFactory
 
 import android.graphics.Bitmap
+import android.util.Log
 import org.w3c.dom.Document
 import java.io.IOException
 import java.io.InputStream
@@ -56,13 +57,26 @@ class PokedexActivity : AppCompatActivity() {
         binding.catchBtn.setOnClickListener {
             val pokemonName =
                 binding.catchPokemonET.text.toString().lowercase().filter { !it.isWhitespace() }
-            catchPokemon(pokemonName)
+            if (pokemonName != "") {
+                catchPokemon(pokemonName)
+            } else {
+                Toast.makeText(
+                    this,
+                    "Escribe el nombre del Pokemon que quieres capturar",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
 
         binding.searchBtn.setOnClickListener {
             val pokemonName =
-                binding.catchPokemonET.text.toString().lowercase().filter { !it.isWhitespace() }
-            searchPokemon(pokemonName)
+                binding.searchPokemonET.text.toString().lowercase().filter { !it.isWhitespace() }
+            if (pokemonName != "") {
+                searchPokemon(pokemonName)
+            } else {
+                Toast.makeText(this, "Escribe el nombre del Pokemon que buscas", Toast.LENGTH_SHORT)
+                    .show()
+            }
         }
     }
 
@@ -94,14 +108,16 @@ class PokedexActivity : AppCompatActivity() {
     private fun searchPokemon(name: String) {
         pokedexCollection.document(user.id).collection("pokedex").document(name).get()
             .addOnCompleteListener {
-                if (it.result?.exists() == true) {
+                //Log.e(">>>", it.result!!.exists().toString())
+                if (it.result!!.exists()) {
                     val pokemon = it.result!!.toObject(Pokemon::class.java)
                     val intent = Intent(this, PokemonActivity::class.java).apply {
                         putExtra("pokemon", pokemon)
                     }
                     startActivity(intent)
                 } else {
-                    Toast.makeText(this, "No has capturado a este Pokemon", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "No has capturado a este Pokemon", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
     }

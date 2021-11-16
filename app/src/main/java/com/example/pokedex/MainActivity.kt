@@ -28,9 +28,7 @@ class MainActivity : AppCompatActivity() {
             val query = userCollection.whereEqualTo("username", user.username)
 
             if (username != "") {
-
                 query.get().addOnCompleteListener {
-
                     if (it.result?.size() == 0) {
                         // Crea el usuario si no existe
                         userCollection.document(user.id).set(user)

@@ -12,5 +12,6 @@ data class Pokemon(
     var specialAttack: Int = 0,
     var specialDefense: Int = 0,
     var speed: Int = 0,
-    var sprite: String = ""
+    var sprite: String = "",
+    var date: Long = 0
 ) : Serializable

@@ -42,7 +42,7 @@ class PokedexActivity : AppCompatActivity() {
         binding.recycler.layoutManager = layoutManager
         binding.recycler.setHasFixedSize(true)
         binding.recycler.adapter = adapter
-
+        adapter?.clearList()
         getUserPokemon()
 
         binding.catchBtn.setOnClickListener {

@@ -35,22 +35,35 @@ class PokedexActivity : AppCompatActivity() {
         lifecycleScope.launch(Dispatchers.IO) {
             try {
                 val json =
-                    HTTPSWebUtilDomi().GETRequest("https://pokeapi.co/api/v2/pokemon/ditto")
+                    HTTPSWebUtilDomi().GETRequest("https://pokeapi.co/api/v2/pokemon/pikachu")
                 //val json = Gson().toJson(response)
                 val gson = Gson()
                 val response = gson.fromJson(json, Response::class.java)
-                Log.e("Pokemon>>>", response.name)
+                Log.e("Pokemon>>>", response.stats[0].stat.name)
+                Log.e("Pokemon>>>", response.stats[0].base_stat.toString())
+
+                Log.e("Pokemon>>>", response.stats[1].stat.name)
+                Log.e("Pokemon>>>", response.stats[1].base_stat.toString())
+
+                Log.e("Pokemon>>>", response.stats[2].stat.name)
+                Log.e("Pokemon>>>", response.stats[2].base_stat.toString())
+
+                Log.e("Pokemon>>>", response.stats[3].stat.name)
+                Log.e("Pokemon>>>", response.stats[3].base_stat.toString())
+
+                Log.e("Pokemon>>>", response.stats[4].stat.name)
+                Log.e("Pokemon>>>", response.stats[4].base_stat.toString())
+
+                Log.e("Pokemon>>>", response.stats[5].stat.name)
+                Log.e("Pokemon>>>", response.stats[5].base_stat.toString())
+
             } catch (e: Exception) {
+                // Si no encuentra un pokemon o el nombre es incorrecto
                 withContext(Dispatchers.Main) {
                     Toast.makeText(applicationContext, "Pokemon no encontrado", Toast.LENGTH_SHORT)
                         .show()
                 }
             }
-
-            //val json = Gson().toJson(response)
-            //withContext(Dispatchers.Main) {}
-            //Log.e("Pokemon>>>", json)
-            //Toast.makeText(applicationContext, "Pokemon", Toast.LENGTH_SHORT).show()
         }
     }
 }

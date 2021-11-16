@@ -19,6 +19,12 @@ class PokemonAdapter : RecyclerView.Adapter<PokemonView>() {
         notifyItemInserted(0)
     }
 
+    fun removePokemon(pokemon: Pokemon) {
+        val index = pokemonList.indexOf(pokemon)
+        pokemonList.removeAt(index)
+        notifyItemRemoved(index)
+    }
+
     fun clearList() {
         pokemonList.clear()
     }

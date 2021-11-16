@@ -2,6 +2,7 @@ package com.example.pokedex
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -17,15 +18,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.*
-import android.graphics.BitmapFactory
-
-import android.graphics.Bitmap
-import android.util.Log
-import org.w3c.dom.Document
-import java.io.IOException
-import java.io.InputStream
-import java.net.HttpURLConnection
-import java.net.URL
 
 
 class PokedexActivity : AppCompatActivity() {
@@ -97,7 +89,9 @@ class PokedexActivity : AppCompatActivity() {
                             }
 
                             DocumentChange.Type.REMOVED -> {
-
+                                val deletedPokemon = change.document.toObject(Pokemon::class.java)
+                                Log.e(">>>", deletedPokemon.name)
+                                adapter?.removePokemon(deletedPokemon)
                             }
                         }
                     }

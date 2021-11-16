@@ -1,5 +1,6 @@
 package com.example.pokedex
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +20,7 @@ import java.util.*
 import android.graphics.BitmapFactory
 
 import android.graphics.Bitmap
+import org.w3c.dom.Document
 import java.io.IOException
 import java.io.InputStream
 import java.net.HttpURLConnection
@@ -56,6 +58,12 @@ class PokedexActivity : AppCompatActivity() {
                 binding.catchPokemonET.text.toString().lowercase().filter { !it.isWhitespace() }
             catchPokemon(pokemonName)
         }
+
+        binding.searchBtn.setOnClickListener {
+            val pokemonName =
+                binding.catchPokemonET.text.toString().lowercase().filter { !it.isWhitespace() }
+            searchPokemon(pokemonName)
+        }
     }
 
     private fun getUserPokemon() {
@@ -66,15 +74,34 @@ class PokedexActivity : AppCompatActivity() {
                         .makeText(this, "No tienes ningún Pokemon por ahora", Toast.LENGTH_SHORT)
                         .show()
                 } else {
-                    for(change in value!!.documentChanges) {
-                        when(change.type){
+                    for (change in value!!.documentChanges) {
+                        when (change.type) {
                             DocumentChange.Type.ADDED -> {
                                 val pokemon = change.document.toObject(Pokemon::class.java)
                                 adapter?.addPokemon(pokemon)
                                 layoutManager.scrollToPosition(0)
                             }
+
+                            DocumentChange.Type.REMOVED -> {
+
+                            }
                         }
                     }
+                }
+            }
+    }
+
+    private fun searchPokemon(name: String) {
+        pokedexCollection.document(user.id).collection("pokedex").document(name).get()
+            .addOnCompleteListener {
+                if (it.result?.exists() == true) {
+                    val pokemon = it.result!!.toObject(Pokemon::class.java)
+                    val intent = Intent(this, PokemonActivity::class.java).apply {
+                        putExtra("pokemon", pokemon)
+                    }
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(this, "No has capturado a este Pokemon", Toast.LENGTH_SHORT).show()
                 }
             }
     }
@@ -99,6 +126,11 @@ class PokedexActivity : AppCompatActivity() {
                 caughtPokemon.speed = response.stats[5].base_stat
                 caughtPokemon.sprite = response.sprites.front_default
                 caughtPokemon.date = Calendar.getInstance().time.time
+                for (type in response.types) {
+                    caughtPokemon.types.add(type.type.name)
+                }
+
+                caughtPokemon.trainerId = user.id
 
                 pokedexCollection.document(user.id).collection("pokedex")
                     .document(caughtPokemon.name).set(caughtPokemon)

@@ -5,7 +5,9 @@ import java.io.Serializable
 data class Pokemon(
 
     var id: String = "",
+    var trainerId: String = "",
     var name: String = "",
+    var types: ArrayList<String> = ArrayList(),
     var hp: Int = 0,
     var attack: Int = 0,
     var defense: Int = 0,

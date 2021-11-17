@@ -19,7 +19,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.*
 
-
 class PokedexActivity : AppCompatActivity() {
 
     private val pokedexCollection = Firebase.firestore.collection("pokedex")

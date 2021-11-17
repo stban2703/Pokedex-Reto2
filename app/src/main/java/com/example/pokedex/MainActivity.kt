@@ -33,10 +33,7 @@ class MainActivity : AppCompatActivity() {
                         val newUserRef = userCollection.document()
                         user.id = newUserRef.id
                         newUserRef.set(user)
-                        val intent = Intent(this, PokedexActivity::class.java).apply {
-                            putExtra("user", user)
-                        }
-                        startActivity(intent)
+                        login(user)
 
                     } else {
 
@@ -46,10 +43,7 @@ class MainActivity : AppCompatActivity() {
                             existingUser = document.toObject(User::class.java)
                             break
                         }
-                        val intent = Intent(this, PokedexActivity::class.java).apply {
-                            putExtra("user", existingUser)
-                        }
-                        startActivity(intent)
+                        login(existingUser)
                     }
                 }
             } else {
@@ -57,5 +51,12 @@ class MainActivity : AppCompatActivity() {
                     .show()
             }
         }
+    }
+
+    private fun login(user: User) {
+        val intent = Intent(this, PokedexActivity::class.java).apply {
+            putExtra("user", user)
+        }
+        startActivity(intent)
     }
 }

@@ -1,7 +1,7 @@
 package com.example.pokedex.pokedex
 
 data class Response(
-    var id: String = "",
+    var id: Int = 0,
     var name: String = "",
     var sprites: Sprite = Sprite(),
     var stats: ArrayList<StatResult> = ArrayList(),

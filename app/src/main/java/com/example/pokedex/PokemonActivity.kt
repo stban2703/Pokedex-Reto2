@@ -20,6 +20,7 @@ class PokemonActivity : AppCompatActivity() {
         binding = ActivityPokemonBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
         pokemon = intent.extras?.getSerializable("pokemon") as Pokemon
         Glide.with(this).load(pokemon.sprite).centerCrop().into(binding.pokemonImage)
         binding.pokemonNameTV.text = pokemon.name.replaceFirstChar {
@@ -40,7 +41,7 @@ class PokemonActivity : AppCompatActivity() {
 
         binding.releaseBtn.setOnClickListener {
             pokedexCollection.document(pokemon.trainerId)
-                .collection("pokedex").document(pokemon.name).delete()
+                .collection("pokedex").document(pokemon.id).delete()
                 .addOnSuccessListener { finish() }
                 .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
         }

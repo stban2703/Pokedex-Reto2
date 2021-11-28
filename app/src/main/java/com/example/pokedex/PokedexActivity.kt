@@ -119,7 +119,8 @@ class PokedexActivity : AppCompatActivity() {
                 val response = gson.fromJson(json, Response::class.java)
 
                 val caughtPokemon = Pokemon()
-                caughtPokemon.id = response.id
+
+                caughtPokemon.pokedexNumber = response.id
                 caughtPokemon.name = response.name
                 caughtPokemon.hp = response.stats[0].base_stat
                 caughtPokemon.attack = response.stats[1].base_stat
@@ -132,11 +133,13 @@ class PokedexActivity : AppCompatActivity() {
                 for (type in response.types) {
                     caughtPokemon.types.add(type.type.name)
                 }
-
                 caughtPokemon.trainerId = user.id
-
-                pokedexCollection.document(user.id).collection("pokedex")
-                    .document(caughtPokemon.name).set(caughtPokemon)
+                val newPokemonRef = pokedexCollection.document(user.id)
+                    .collection("pokedex").document()
+                caughtPokemon.id = newPokemonRef.id
+                newPokemonRef.set(caughtPokemon)
+                /*pokedexCollection.document(user.id).collection("pokedex")
+                    .document(caughtPokemon.id).set(caughtPokemon)*/
 
                 withContext(Dispatchers.Main) {
                     Toast.makeText(applicationContext, "Pokemon atrapado", Toast.LENGTH_SHORT)

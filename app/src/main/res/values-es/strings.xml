@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Pokedex</string>
+    <string name="app_imageDescription">Pokemon</string>
+    <string name="app_button_login">Ingresar</string>
+    <string name="app_button_catch">Atrapar</string>
+    <string name="app_button_release">Liberar</string>
+    <string name="app_intro">Ingresa el nombre de usuario de tu entrenador Pokemon</string>
+    <string name="app_myPokemon">Mis Pokemon</string>
+    <string name="app_loading">Cargando…</string>
+    <string name="app_hp">HP</string>
+    <string name="app_attack">Ataque</string>
+    <string name="app_defense">Defensa</string>
+    <string name="app_specialAttack">Ataque esp.</string>
+    <string name="app_specialDefense">Defensa esp.</string>
+    <string name="app_speed">Velocidad</string>
+    <string name="app_hint_username">Nombre de usuario</string>
+    <string name="app_hint_catch">Captura un Pokemon</string>
+    <string name="app_hint_search">Buscar</string>
+</resources>

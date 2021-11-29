@@ -138,12 +138,12 @@ class PokedexActivity : AppCompatActivity() {
                     caughtPokemon.types.add(type.type.name)
                 }
                 caughtPokemon.trainerId = user.id
+
                 val newPokemonRef = pokedexCollection.document(user.id)
                     .collection("pokedex").document()
+
                 caughtPokemon.id = newPokemonRef.id
                 newPokemonRef.set(caughtPokemon)
-                /*pokedexCollection.document(user.id).collection("pokedex")
-                    .document(caughtPokemon.id).set(caughtPokemon)*/
 
                 withContext(Dispatchers.Main) {
                     Toast.makeText(applicationContext, "Pokemon atrapado", Toast.LENGTH_SHORT)

@@ -94,18 +94,22 @@ class PokedexActivity : AppCompatActivity() {
     }
 
     private fun searchPokemon(name: String) {
-        pokedexCollection.document(user.id).collection("pokedex").document(name).get()
+        pokedexCollection.document(user.id).collection("pokedex")
+            .whereEqualTo("name", name).get()
             .addOnCompleteListener {
-                //Log.e(">>>", it.result!!.exists().toString())
-                if (it.result!!.exists()) {
-                    val pokemon = it.result!!.toObject(Pokemon::class.java)
-                    val intent = Intent(this, PokemonActivity::class.java).apply {
-                        putExtra("pokemon", pokemon)
-                    }
-                    startActivity(intent)
-                } else {
+                if (it.result?.size() == 0) {
                     Toast.makeText(this, "No has capturado a este Pokemon", Toast.LENGTH_SHORT)
                         .show()
+                } else {
+                    lateinit var existingPokemon: Pokemon
+                    for (document in it.result!!) {
+                        existingPokemon = document.toObject(Pokemon::class.java)
+                        break
+                    }
+                    val intent = Intent(this, PokemonActivity::class.java).apply {
+                        putExtra("pokemon", existingPokemon)
+                    }
+                    startActivity(intent)
                 }
             }
     }

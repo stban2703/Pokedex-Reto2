@@ -94,6 +94,7 @@ class PokedexActivity : AppCompatActivity() {
     }
 
     private fun searchPokemon(name: String) {
+        Toast.makeText(this, "Buscando...", Toast.LENGTH_SHORT).show()
         pokedexCollection.document(user.id).collection("pokedex")
             .whereEqualTo("name", name).get()
             .addOnCompleteListener {
@@ -115,6 +116,7 @@ class PokedexActivity : AppCompatActivity() {
     }
 
     private fun catchPokemon(pokemonName: String) {
+        Toast.makeText(this, "Capturando...", Toast.LENGTH_SHORT).show()
         lifecycleScope.launch(Dispatchers.IO) {
             try {
                 val json =

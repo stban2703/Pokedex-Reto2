@@ -4,6 +4,7 @@ import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.pokedex.databinding.ActivityPokemonBinding
 import com.google.firebase.firestore.ktx.firestore
@@ -40,6 +41,7 @@ class PokemonActivity : AppCompatActivity() {
         binding.speedTV.text = pokemon.speed.toString()
 
         binding.releaseBtn.setOnClickListener {
+            Toast.makeText(this, "Liberando...", Toast.LENGTH_SHORT).show()
             pokedexCollection.document(pokemon.trainerId)
                 .collection("pokedex").document(pokemon.id).delete()
                 .addOnSuccessListener { finish() }

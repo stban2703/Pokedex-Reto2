@@ -26,9 +26,9 @@ class MainActivity : AppCompatActivity() {
             val query = userCollection.whereEqualTo("username", user.username)
 
             if (username != "") {
+                Toast.makeText(this, "Cargando...", Toast.LENGTH_SHORT).show()
                 query.get().addOnCompleteListener {
                     if (it.result?.size() == 0) {
-
                         // Crea el usuario si no existe
                         val newUserRef = userCollection.document()
                         user.id = newUserRef.id

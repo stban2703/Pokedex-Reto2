@@ -4,13 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Universidad/Semestre8/AppsMoviles/Pokedex/app/src/main/res/drawable/button_background.xml" value="0.22592592592592592" />
+        <entry key="..\:/Universidad/Semestre8/AppsMoviles/Pokedex/app/src/main/res/drawable/button_style.xml" value="0.22592592592592592" />
         <entry key="..\:/Universidad/Semestre8/AppsMoviles/Pokedex/app/src/main/res/drawable/edittext_background.xml" value="0.22592592592592592" />
+        <entry key="..\:/Universidad/Semestre8/AppsMoviles/Pokedex/app/src/main/res/drawable/imagebutton_background.xml" value="0.22592592592592592" />
         <entry key="..\:/Universidad/Semestre8/AppsMoviles/Pokedex/app/src/main/res/drawable/pokemonimage_background.xml" value="0.22592592592592592" />
         <entry key="..\:/Universidad/Semestre8/AppsMoviles/Pokedex/app/src/main/res/drawable/pokemonlist_background.xml" value="0.22592592592592592" />
         <entry key="..\:/Universidad/Semestre8/AppsMoviles/Pokedex/app/src/main/res/drawable/pokemonrow_background.xml" value="0.22592592592592592" />
+        <entry key="..\:/Universidad/Semestre8/AppsMoviles/Pokedex/app/src/main/res/drawable/pressed_button_background.xml" value="0.22592592592592592" />
         <entry key="..\:/Universidad/Semestre8/AppsMoviles/Pokedex/app/src/main/res/font/nunito.xml" value="0.22592592592592592" />
         <entry key="..\:/Universidad/Semestre8/AppsMoviles/Pokedex/app/src/main/res/layout/activity_main.xml" value="0.264" />
-        <entry key="..\:/Universidad/Semestre8/AppsMoviles/Pokedex/app/src/main/res/layout/activity_pokedex.xml" value="0.2" />
+        <entry key="..\:/Universidad/Semestre8/AppsMoviles/Pokedex/app/src/main/res/layout/activity_pokedex.xml" value="0.264" />
         <entry key="..\:/Universidad/Semestre8/AppsMoviles/Pokedex/app/src/main/res/layout/activity_pokemon.xml" value="0.264" />
         <entry key="..\:/Universidad/Semestre8/AppsMoviles/Pokedex/app/src/main/res/layout/pokemonrow.xml" value="0.21875" />
       </map>

@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/BackgroundPokemonLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PokemonActivity">
@@ -11,6 +12,7 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginTop="56dp"
+        android:background="@drawable/pokemonimage_background"
         android:contentDescription="@string/app_imageDescription"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,6 +22,7 @@
 
     <TextView
         android:id="@+id/pokemonNameTV"
+        style="@style/PokemonViewName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -31,9 +34,10 @@
 
     <TextView
         android:id="@+id/pokemonTypeTV"
+        style="@style/PokemonTypes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/app_loading"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/pokemonNameTV"
@@ -42,6 +46,7 @@
 
     <TextView
         android:id="@+id/textView6"
+        style="@style/PokemonStatTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -55,6 +60,7 @@
 
     <TextView
         android:id="@+id/hpTV"
+        style="@style/PokemonStatValue"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -70,10 +76,11 @@
 
     <TextView
         android:id="@+id/textView13"
+        style="@style/PokemonStatTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:text="@string/app_attack"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/attackTV"
@@ -83,10 +90,11 @@
 
     <TextView
         android:id="@+id/textView15"
+        style="@style/PokemonStatTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:text="@string/app_defense"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/defenseTV"
@@ -96,10 +104,11 @@
 
     <TextView
         android:id="@+id/textView16"
+        style="@style/PokemonStatTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:text="@string/app_specialAttack"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/spAttackTV"
@@ -109,10 +118,11 @@
 
     <TextView
         android:id="@+id/textView17"
+        style="@style/PokemonStatTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:text="@string/app_specialDefense"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/spDefenseTV"
@@ -122,10 +132,11 @@
 
     <TextView
         android:id="@+id/textView18"
+        style="@style/PokemonStatTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:text="@string/app_speed"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/speedTV"
@@ -135,6 +146,7 @@
 
     <TextView
         android:id="@+id/attackTV"
+        style="@style/PokemonStatValue"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -150,6 +162,7 @@
 
     <TextView
         android:id="@+id/defenseTV"
+        style="@style/PokemonStatValue"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -165,6 +178,7 @@
 
     <TextView
         android:id="@+id/spAttackTV"
+        style="@style/PokemonStatValue"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -180,6 +194,7 @@
 
     <TextView
         android:id="@+id/spDefenseTV"
+        style="@style/PokemonStatValue"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -195,6 +210,7 @@
 
     <TextView
         android:id="@+id/speedTV"
+        style="@style/PokemonStatValue"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -210,11 +226,13 @@
 
     <Button
         android:id="@+id/releaseBtn"
+        style="@style/AppButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="@string/app_button_release"
+        app:backgroundTint="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

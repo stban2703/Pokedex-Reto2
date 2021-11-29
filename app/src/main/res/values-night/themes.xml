@@ -18,6 +18,10 @@
         <item name="android:background">@color/red_main</item>
     </style>
 
+    <style name="BackgroundPokemonLayout">
+        <item name="android:background">@color/white</item>
+    </style>
+
     <style name="PokemonListLayout">
         <item name="android:background">@drawable/pokemonlist_background</item>
     </style>
@@ -32,6 +36,7 @@
         <item name="android:elevation">2dp</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/nunito_semibold</item>
     </style>
 
     <style name="TitleMain" parent="Widget.AppCompat.TextView">
@@ -42,16 +47,43 @@
     <style name="SubTitleMain" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">@font/nunito_semibold</item>
     </style>
 
     <style name="PokemonListName" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/gray_main</item>
         <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/nunito_semibold</item>
+    </style>
+
+    <style name="PokemonViewName" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/gray_main</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">@font/nunito_semibold</item>
+    </style>
+
+    <style name="PokemonTypes" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/gray_main</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">@font/nunito_regular</item>
+    </style>
+
+    <style name="PokemonStatTitle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/gray_main</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/nunito_semibold</item>
+    </style>
+
+    <style name="PokemonStatValue" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/gray_main</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/nunito_regular</item>
     </style>
 
     <style name="DescriptionText" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/nunito_regular</item>
     </style>
 
     <style name="AppEditText" parent="Widget.AppCompat.EditText">
@@ -60,5 +92,6 @@
         <item name="android:textColorHint">@color/gray_hint</item>
         <item name="android:textSize">20sp</item>
         <item name="android:padding">10dp</item>
+        <item name="android:fontFamily">@font/nunito_regular</item>
     </style>
 </resources>

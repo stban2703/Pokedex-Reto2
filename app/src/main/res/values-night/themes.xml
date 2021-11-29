@@ -46,6 +46,7 @@
     <style name="TitleMain" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">36sp</item>
+        <item name="android:fontFamily">@font/nunito_semibold</item>
     </style>
 
     <style name="SubTitleMain" parent="Widget.AppCompat.TextView">

@@ -71,15 +71,17 @@
 
     <ImageButton
         android:id="@+id/searchBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/AppButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_marginEnd="32dp"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/searchPokemonET"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/searchPokemonET"
         app:layout_constraintTop_toTopOf="@+id/searchPokemonET"
-        app:srcCompat="@android:drawable/ic_menu_send"
+        app:srcCompat="@drawable/search_icon"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <androidx.recyclerview.widget.RecyclerView

@@ -29,6 +29,10 @@
     <style name="PokemonRowLayout">
         <item name="android:background">@drawable/pokemonrow_background</item>
     </style>
+
+    <style name="PokemonViewLayout">
+        <item name="android:background">@drawable/pokemonviewlayout_background</item>
+    </style>
     
     <style name="AppButton" parent="Widget.AppCompat.Button">
         <item name="android:background">@drawable/button_style</item>

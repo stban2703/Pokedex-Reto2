@@ -5,6 +5,7 @@
     <string name="app_button_register">Register</string>
     <string name="app_button_catch">Catch</string>
     <string name="app_button_release">Release</string>
+    <string name="app_button_logout">Logout</string>
     <string name="app_intro">Enter your email and password</string>
     <string name="app_register_here">Register here</string>
     <string name="app_already_signed_up">I have an account</string>

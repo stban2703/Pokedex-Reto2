@@ -13,6 +13,7 @@ import com.example.pokedex.model.Pokemon
 import com.example.pokedex.model.Response
 import com.example.pokedex.model.User
 import com.example.pokedex.util.HTTPSWebUtilDomi
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -46,7 +47,11 @@ class PokedexActivity : AppCompatActivity() {
 
         // Recuperar informacion del usuario
         user = loadUser()
-        if(user != null) {
+        if (user == null || Firebase.auth.currentUser == null) {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        } else {
             getUserPokemon()
             binding.catchBtn.setOnClickListener {
                 val pokemonName =
@@ -64,17 +69,28 @@ class PokedexActivity : AppCompatActivity() {
 
             binding.searchBtn.setOnClickListener {
                 val pokemonName =
-                    binding.searchPokemonET.text.toString().lowercase().filter { !it.isWhitespace() }
+                    binding.searchPokemonET.text.toString().lowercase()
+                        .filter { !it.isWhitespace() }
                 if (pokemonName != "") {
                     searchPokemon(pokemonName)
                 } else {
-                    Toast.makeText(this, "Escribe el nombre del Pokemon que buscas", Toast.LENGTH_SHORT)
+                    Toast.makeText(
+                        this,
+                        "Escribe el nombre del Pokemon que buscas",
+                        Toast.LENGTH_SHORT
+                    )
                         .show()
                 }
             }
-        } else {
-            val intent = Intent(this, MainActivity::class.java)
-            finish()
+
+            binding.logoutBtn.setOnClickListener {
+                finish()
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                val sp = getSharedPreferences("pokedex", MODE_PRIVATE)
+                sp.edit().clear().apply()
+                Firebase.auth.signOut()
+            }
         }
     }
 

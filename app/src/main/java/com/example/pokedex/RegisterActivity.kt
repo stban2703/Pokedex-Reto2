@@ -1,17 +1,16 @@
 package com.example.pokedex
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.pokedex.databinding.ActivityRegisterBinding
 import com.example.pokedex.model.User
 import com.example.pokedex.util.CustomToastMessage
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.gson.Gson
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -45,9 +44,8 @@ class RegisterActivity : AppCompatActivity() {
                             val id = Firebase.auth.currentUser?.uid
                             val user = User(id!!, email, userName)
                             userCollection.document(id).set(user)
-                            val intent = Intent(this, MainActivity::class.java).apply {
-                                putExtra("user", user)
-                            }
+                            saveUser(user)
+                            val intent = Intent(this, PokedexActivity::class.java)
                             startActivity(intent)
                         }
                         .addOnFailureListener {
@@ -62,5 +60,11 @@ class RegisterActivity : AppCompatActivity() {
         } else {
             toast.createShortTimeToast(this, "Debes completar todos los campos")
         }
+    }
+
+    private fun saveUser(user: User) {
+        val sp = getSharedPreferences("pokedex", MODE_PRIVATE)
+        val json = Gson().toJson(user)
+        sp.edit().putString("user", json).apply()
     }
 }

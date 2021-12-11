@@ -28,16 +28,13 @@ class PokedexActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPokedexBinding
     private lateinit var layoutManager: LinearLayoutManager
     var adapter: PokemonAdapter? = null
-    private lateinit var user: User
+    private var user: User? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPokedexBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
-        // Recuperar informacion del usuario
-        user = intent.extras?.getSerializable("user") as User
 
         // Mostrar pokemon atrapados
         adapter = PokemonAdapter()
@@ -46,36 +43,43 @@ class PokedexActivity : AppCompatActivity() {
         binding.recycler.setHasFixedSize(true)
         binding.recycler.adapter = adapter
         adapter?.clearList()
-        getUserPokemon()
 
-        binding.catchBtn.setOnClickListener {
-            val pokemonName =
-                binding.catchPokemonET.text.toString().lowercase().filter { !it.isWhitespace() }
-            if (pokemonName != "") {
-                catchPokemon(pokemonName)
-            } else {
-                Toast.makeText(
-                    this,
-                    "Escribe el nombre del Pokemon que quieres capturar",
-                    Toast.LENGTH_SHORT
-                ).show()
+        // Recuperar informacion del usuario
+        user = loadUser()
+        if(user != null) {
+            getUserPokemon()
+            binding.catchBtn.setOnClickListener {
+                val pokemonName =
+                    binding.catchPokemonET.text.toString().lowercase().filter { !it.isWhitespace() }
+                if (pokemonName != "") {
+                    catchPokemon(pokemonName)
+                } else {
+                    Toast.makeText(
+                        this,
+                        "Escribe el nombre del Pokemon que quieres capturar",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
-        }
 
-        binding.searchBtn.setOnClickListener {
-            val pokemonName =
-                binding.searchPokemonET.text.toString().lowercase().filter { !it.isWhitespace() }
-            if (pokemonName != "") {
-                searchPokemon(pokemonName)
-            } else {
-                Toast.makeText(this, "Escribe el nombre del Pokemon que buscas", Toast.LENGTH_SHORT)
-                    .show()
+            binding.searchBtn.setOnClickListener {
+                val pokemonName =
+                    binding.searchPokemonET.text.toString().lowercase().filter { !it.isWhitespace() }
+                if (pokemonName != "") {
+                    searchPokemon(pokemonName)
+                } else {
+                    Toast.makeText(this, "Escribe el nombre del Pokemon que buscas", Toast.LENGTH_SHORT)
+                        .show()
+                }
             }
+        } else {
+            val intent = Intent(this, MainActivity::class.java)
+            finish()
         }
     }
 
     private fun getUserPokemon() {
-        pokedexCollection.document(user.id).collection("pokedex")
+        pokedexCollection.document(user!!.id).collection("pokedex")
             .orderBy("date").addSnapshotListener { value, error ->
                 for (change in value!!.documentChanges) {
                     Log.e(">>>", value.documents.size.toString())
@@ -97,8 +101,7 @@ class PokedexActivity : AppCompatActivity() {
     }
 
     private fun searchPokemon(name: String) {
-        Toast.makeText(this, "Buscando...", Toast.LENGTH_SHORT).show()
-        pokedexCollection.document(user.id).collection("pokedex")
+        pokedexCollection.document(user!!.id).collection("pokedex")
             .whereEqualTo("name", name).get()
             .addOnCompleteListener {
                 if (it.result?.size() == 0) {
@@ -142,9 +145,9 @@ class PokedexActivity : AppCompatActivity() {
                 for (type in response.types) {
                     caughtPokemon.types.add(type.type.name)
                 }
-                caughtPokemon.trainerId = user.id
+                caughtPokemon.trainerId = user!!.id
 
-                val newPokemonRef = pokedexCollection.document(user.id)
+                val newPokemonRef = pokedexCollection.document(user!!.id)
                     .collection("pokedex").document()
 
                 caughtPokemon.id = newPokemonRef.id
@@ -162,6 +165,16 @@ class PokedexActivity : AppCompatActivity() {
                         .show()
                 }
             }
+        }
+    }
+
+    private fun loadUser(): User? {
+        val sp = getSharedPreferences("pokedex", MODE_PRIVATE)
+        val json = sp.getString("user", "NO_USER")
+        return if (json == "NO_USER") {
+            null
+        } else {
+            Gson().fromJson(json, User::class.java)
         }
     }
 }

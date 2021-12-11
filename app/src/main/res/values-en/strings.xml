@@ -2,9 +2,11 @@
     <string name="app_name">Pokedex</string>
     <string name="app_imageDescription">Pokemon</string>
     <string name="app_button_login">Login</string>
+    <string name="app_button_register">Register</string>
     <string name="app_button_catch">Catch</string>
     <string name="app_button_release">Release</string>
     <string name="app_intro">Enter your trainer username and password</string>
+    <string name="app_register_here">Register here</string>
     <string name="app_myPokemon">My Pokemon</string>
     <string name="app_loading">Loading…</string>
     <string name="app_hp">HP</string>
@@ -15,6 +17,7 @@
     <string name="app_speed">Speed</string>
     <string name="app_hint_username">Username</string>
     <string name="app_hint_password">Password</string>
+    <string name="app_hint_check_password">Confirm password</string>
     <string name="app_hint_catch">Catch a Pokemon</string>
     <string name="app_hint_search">Search</string>
 </resources>

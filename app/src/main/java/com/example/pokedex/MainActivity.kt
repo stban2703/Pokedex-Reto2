@@ -20,6 +20,11 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        binding.registerHereBtn.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.loginBtn.setOnClickListener {
             val username =
                 binding.usernameET.text.toString().lowercase().filter { !it.isWhitespace() }

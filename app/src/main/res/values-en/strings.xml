@@ -15,6 +15,7 @@
     <string name="app_specialAttack">Sp. Attack</string>
     <string name="app_specialDefense">Sp. Defense</string>
     <string name="app_speed">Speed</string>
+    <string name="app_hint_email">Email</string>
     <string name="app_hint_username">Username</string>
     <string name="app_hint_password">Password</string>
     <string name="app_hint_check_password">Confirm password</string>

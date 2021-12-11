@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         binding.registerHereBtn.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         binding.loginBtn.setOnClickListener(::login)
@@ -45,6 +46,7 @@ class MainActivity : AppCompatActivity() {
                     saveUser(user!!)
                     val intent = Intent(this, PokedexActivity::class.java)
                     startActivity(intent)
+                    finish()
                 }
             }.addOnFailureListener {
                 toast.createShortTimeToast(this, it.message!!)

@@ -23,6 +23,8 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.alreadyBtn.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
             finish()
         }
         binding.registerBtn.setOnClickListener(::register)
@@ -47,6 +49,7 @@ class RegisterActivity : AppCompatActivity() {
                             saveUser(user)
                             val intent = Intent(this, PokedexActivity::class.java)
                             startActivity(intent)
+                            finish()
                         }
                         .addOnFailureListener {
                             toast.createShortTimeToast(this, it.message!!)

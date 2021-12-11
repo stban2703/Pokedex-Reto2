@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.loginBtn.setOnClickListener {
             val username =
-                binding.usernameET.text.toString().lowercase().filter { !it.isWhitespace() }
+                binding.userEmailET.text.toString().lowercase().filter { !it.isWhitespace() }
             val user = User("", username)
             val query = userCollection.whereEqualTo("username", user.username)
 

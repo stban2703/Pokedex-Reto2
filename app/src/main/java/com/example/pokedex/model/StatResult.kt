@@ -1,4 +1,4 @@
-package com.example.pokedex.pokedex
+package com.example.pokedex.model
 
 data class StatResult(
     var base_stat: Int = 0,

@@ -7,8 +7,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.pokedex.adapters.PokemonAdapter
 import com.example.pokedex.databinding.ActivityPokedexBinding
-import com.example.pokedex.pokedex.Response
+import com.example.pokedex.model.Pokemon
+import com.example.pokedex.model.Response
+import com.example.pokedex.model.User
 import com.example.pokedex.util.HTTPSWebUtilDomi
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.ktx.firestore

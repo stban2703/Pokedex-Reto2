@@ -1,9 +1,12 @@
-package com.example.pokedex
+package com.example.pokedex.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.pokedex.R
+import com.example.pokedex.model.Pokemon
+import com.example.pokedex.views.PokemonView
 
 class PokemonAdapter : RecyclerView.Adapter<PokemonView>() {
 

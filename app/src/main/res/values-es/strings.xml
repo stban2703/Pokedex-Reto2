@@ -7,6 +7,7 @@
     <string name="app_button_release">Liberar</string>
     <string name="app_intro">Ingresa tu nombre de usuario de entrenador y tu contraseña</string>
     <string name="app_register_here">Registrate aquí</string>
+    <string name="app_already_signed_up">Ya tengo cuenta</string>
     <string name="app_myPokemon">Mis Pokemon</string>
     <string name="app_loading">Cargando…</string>
     <string name="app_hp">HP</string>

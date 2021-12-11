@@ -23,6 +23,9 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.alreadyBtn.setOnClickListener {
+            finish()
+        }
         binding.registerBtn.setOnClickListener(::register)
     }
 

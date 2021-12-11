@@ -7,6 +7,7 @@
     <string name="app_button_release">Release</string>
     <string name="app_intro">Enter your trainer username and password</string>
     <string name="app_register_here">Register here</string>
+    <string name="app_already_signed_up">I have an account</string>
     <string name="app_myPokemon">My Pokemon</string>
     <string name="app_loading">Loading…</string>
     <string name="app_hp">HP</string>

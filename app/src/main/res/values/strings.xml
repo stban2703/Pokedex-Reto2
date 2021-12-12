@@ -23,4 +23,6 @@
     <string name="app_hint_check_password">Confirm password</string>
     <string name="app_hint_catch">Catch a Pokemon</string>
     <string name="app_hint_search">Search</string>
+    <string name="facebook_app_id" translatable="false">960252548257345</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb960252548257345</string>
 </resources>

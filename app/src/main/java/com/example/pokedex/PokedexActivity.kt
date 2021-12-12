@@ -22,6 +22,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.*
+import com.facebook.AccessToken
+import com.facebook.login.LoginManager
+
 
 class PokedexActivity : AppCompatActivity() {
 
@@ -84,12 +87,17 @@ class PokedexActivity : AppCompatActivity() {
             }
 
             binding.logoutBtn.setOnClickListener {
-                finish()
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 val sp = getSharedPreferences("pokedex", MODE_PRIVATE)
                 sp.edit().clear().apply()
+                val accessToken = AccessToken.getCurrentAccessToken()
+                val isLoggedIn = accessToken != null && !accessToken.isExpired
+                if(isLoggedIn) {
+                    LoginManager.getInstance().logOut()
+                }
                 Firebase.auth.signOut()
+                finish()
             }
         }
     }
